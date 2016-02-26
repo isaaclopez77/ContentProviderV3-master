@@ -6,7 +6,9 @@ import android.database.Cursor;
 
 import com.example.dam.contentprovider.contratos.ContratoDisco;
 
-public class Disco {
+import java.io.Serializable;
+
+public class Disco implements Serializable {
     
     private long id, idInterprete;
     private String nombre;

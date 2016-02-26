@@ -1,4 +1,4 @@
-package com.example.dam.contentprovider;
+package com.example.dam.contentprovider.adaptadores;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import com.example.dam.contentprovider.R;
 import com.example.dam.contentprovider.pojo.Cancion;
 
 public class Adaptador extends CursorAdapter {

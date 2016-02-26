@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lvDiscos"
+        android:id="@+id/lvInterpretes"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp" />
 
@@ -18,12 +18,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Discos"
-        android:id="@+id/textView2"
+        android:text="Intérpretes"
+        android:id="@+id/Intérpretes"
         android:textStyle="bold|italic"
         android:textColor="#ffffff"
         android:background="#f55023c0"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="010dp" />
+        android:layout_marginTop="10dp" />
 </RelativeLayout>

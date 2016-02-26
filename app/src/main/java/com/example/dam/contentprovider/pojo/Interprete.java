@@ -5,7 +5,9 @@ import android.database.Cursor;
 
 import com.example.dam.contentprovider.contratos.ContratoInterprete;
 
-public class Interprete {
+import java.io.Serializable;
+
+public class Interprete implements Serializable{
 
     private long id;
     private String nombre;

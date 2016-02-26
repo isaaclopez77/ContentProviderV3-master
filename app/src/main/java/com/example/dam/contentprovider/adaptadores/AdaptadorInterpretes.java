@@ -1,4 +1,4 @@
-package com.example.dam.contentprovider;
+package com.example.dam.contentprovider.adaptadores;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.example.dam.contentprovider.pojo.Cancion;
+import com.example.dam.contentprovider.R;
 import com.example.dam.contentprovider.pojo.Disco;
+import com.example.dam.contentprovider.pojo.Interprete;
 
-public class AdaptadorDiscos extends CursorAdapter {
+public class AdaptadorInterpretes extends CursorAdapter {
 
-    public AdaptadorDiscos(Context context, Cursor c) {
+    public AdaptadorInterpretes(Context context, Cursor c) {
         super(context, c, true);
     }
 
@@ -27,8 +28,8 @@ public class AdaptadorDiscos extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView tv = (TextView)view.findViewById(R.id.tvTitulo);
-        Disco d = new Disco();
-        d.set(cursor);
-        tv.setText(d.getNombre());
+        Interprete i = new Interprete();
+        i.set(cursor);
+        tv.setText(i.getNombre());
     }
 }

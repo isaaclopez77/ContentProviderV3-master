@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.dam.contentprovider.adaptadores.Adaptador;
 import com.example.dam.contentprovider.contratos.ContratoCancion;
 import com.example.dam.contentprovider.contratos.ContratoDisco;
 import com.example.dam.contentprovider.contratos.ContratoInterprete;
@@ -59,9 +60,6 @@ public class Principal extends AppCompatActivity {
                 canciones.remove(info.position);
                 Toast.makeText(this,cant+" cancion eliminada.",Toast.LENGTH_LONG).show();
                 break;
-            case R.id.mnEditar:
-
-                break;
         }
         return super.onContextItemSelected(item);
     }
@@ -74,6 +72,19 @@ public class Principal extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.mnDiscos:
+                Intent iD = new Intent(this, MostrarDiscos.class);
+                startActivity(iD);
+                break;
+            case R.id.mnInterpretes:
+                Intent iI = new Intent(this, MostrarInterpretes.class);
+                startActivity(iI);
+                break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -87,8 +98,16 @@ public class Principal extends AppCompatActivity {
     }
 
     private void init() {
-        cur = getContentResolver().query(uriC, null, null, null, null); //Cursor canciones
-        if (cur.getCount()==0) {
+        Bundle b = getIntent().getExtras();
+        if(b != null){
+            Disco seleccionado = (Disco)b.getSerializable("disco");
+
+            cur = getContentResolver().query(uriC, null, ContratoCancion.TablaCancion.idDisco + " = ?", new String[]{seleccionado.getId()+""}, null); //Cursor canciones
+        }else{
+            cur = getContentResolver().query(uriC, null, null, null, null); //Cursor canciones
+        }
+
+        if (cur.getCount() == 0 && b == null) {
             Log.v("estado", "insertando");
             insertarDatos();
             cur = getContentResolver().query(uriC, null, null, null, null); //lo actualizamos
@@ -102,15 +121,6 @@ public class Principal extends AppCompatActivity {
 
         Adaptador ad = new Adaptador(this,cur);
         lv.setAdapter(ad);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Principal.this, canciones.get(position).toString(), Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(Principal.this,MostrarDiscos.class);
-                i.putExtra("cancion",canciones.get(position));
-                startActivity(i);
-            }
-        });
 
         registerForContextMenu(lv);
     }
